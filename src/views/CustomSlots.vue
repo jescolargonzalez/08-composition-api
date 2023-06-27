@@ -16,6 +16,9 @@
     <template v-slot:body>
         <p>adifhñsdfhadskhfasdfh asdsa asd asd asd qwfqw q w</p>
     </template> 
+    <template v-slot:exposed="{ newTitle }">
+        <h2>{{newTitle}} !! </h2>
+    </template>
 </modal>
 </template>
 

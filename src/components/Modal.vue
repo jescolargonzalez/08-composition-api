@@ -3,36 +3,43 @@
     <div class="modal-container">
         <hr>
         <slot name="header"/>
-        <hr>
-       
-        <hr><!-- <slot/> -->
+        <!-- <slot/> -->
         <slot name="body">
             <!--Recibimos el SLOT-->
             <div class="center"> <!-- Envolver para aplicar css -->
                 Esto aparecera si no tenemos contenido.
             </div> 
         </slot>
-        <hr>
-        <hr>
+
         <slot name="footer"/>
-        <hr>           
+        <hr>
+        <!-- variable asignada a slot -->
+        <slot name="exposed" :newTitle="newTitle">
+            <!--ver props-->
+            <h2> {{ slot.props }} </h2>
+            <h2> {{ slot.props.newTitle }} </h2>    
+        </slot>
+        <hr>
     </div>
 </div>
 </template>
 
 <script>
 export default {
-    props:{
-        title:{
-            type:String,
-            required:true
-        }
-    },
+    props:['title'],
+        //  title:{
+        //    type:String,
+        //    required:true
+        //  }
+    
     emits: ['on:close'],
 // diferencia entre atributo y property : si esta definida en el setup.
 // props se reciben como argumento y pueden ser utilizadas y si no esta definida en el setup se considera atributo
     setup( props, context ){
-        
+        console.log({props, context})
+        return{
+            newTitle: props.title?.toUpperCase()
+        }
     }
 }
 </script>
