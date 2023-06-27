@@ -22,32 +22,24 @@
 </div>
 </template> 
 
-<script>
-import { computed , ref } from 'vue'
-import { useStore } from 'vuex'
 
-// commit - ejecutar acciones/mutaciones
-// dispatch - despachar acciones (asincrono)
+<!--   commit - ejecutar acciones/mutaciones   -->
+<!--   dispatch - despachar acciones (asincrono)   -->
+<script>
+import useTodos from "../composables/useTodos";
 
 export default {
-    setup() { // composition api , [!] no hay this! , Recomendacion NO USAR METODOS
+    // composition api , [!] no hay this! , Recomendacion NO USAR METODOS   
+    setup() { 
+        const { pending , currentTab , getTodosByTab , toggleTodo } = useTodos()
 
-        //1º's - Composables (de terceros primero, luego los propios)
-        const store = useStore()
-        console.log(store)
-        //2º's - State's
-        const currentTab = ref('all')        
-
-        return {  
+        return {
             currentTab,
-            // al ser solo utilizada en el template, se coloca aqui en vez de una const fuera del return como el store.
-            pending: computed( () => store.getters['pendingTodos']),// Array's
-            all: computed( () => store.getters['allTodos']),// Array's
-            completed: computed( () => store.getters['completedTodos']),// Array's
-            getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value) ),
-            //Method's
-            toggleTodo: ( id ) => { store.commit('toggleTodo', id) }       
+            getTodosByTab,
+            pending,
+            toggleTodo
         }
+
     }
 }
 </script>
