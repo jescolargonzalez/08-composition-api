@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-
+import { v4 as uuidv4 } from 'uuid'
 //STORE GLOBAL
 export default createStore({
   state: {
@@ -17,6 +17,14 @@ export default createStore({
       const todoIdx = state.todos.findIndex( todo => todo.id === id) //Indice ToDo
       //  console.log('indexTodo: ',todoIdx)
       state.todos[todoIdx].completed = !state.todos[todoIdx].completed
+    },
+    createTodo(state, text=''){      
+      if ( text.length <= 1 ) return
+      state.todos.push({
+        id: uuidv4(),
+        completed: false,
+        text
+      })
     }
   },
   actions: {
@@ -41,7 +49,7 @@ export default createStore({
         case 'completed': return getters.completedTodos
       }
     }, 
-
+    
   },
   modules: {
   }

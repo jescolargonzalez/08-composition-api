@@ -1,7 +1,6 @@
 <template>
 <div class="modal-background fade-in" @click.self="$emit('on:close')"> <!-- con .self no afecta a los hijos el scope-->
     <div class="modal-container">
-        <hr>
         <slot name="header"/>
         <!-- <slot/> -->
         <slot name="body">
@@ -12,14 +11,9 @@
         </slot>
 
         <slot name="footer"/>
-        <hr>
         <!-- variable asignada a slot -->
-        <slot name="exposed" :newTitle="newTitle">
-            <!--ver props-->
-            <h2> {{ slot.props }} </h2>
-            <h2> {{ slot.props.newTitle }} </h2>    
-        </slot>
-        <hr>
+        <slot name="exposed" :newTitle="newTitle"></slot>
+        <!-- ver props {{ slot.props }} -->
     </div>
 </div>
 </template>

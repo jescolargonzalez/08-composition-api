@@ -12,9 +12,12 @@ const useTodos = () => {
         pending: computed( () => store.getters['pendingTodos']),// Array's
         all: computed( () => store.getters['allTodos']),// Array's
         completed: computed( () => store.getters['completedTodos']),// Array's
+       
         getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value) ),
+       
         //Method's
-        toggleTodo: ( id ) => { store.commit('toggleTodo', id) }       
+        toggleTodo: ( id ) => { store.commit('toggleTodo', id) },
+        createTodo: ( text ) => { store.commit('createTodo', text) },
     }   
 }
 

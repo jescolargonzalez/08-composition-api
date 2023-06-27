@@ -37,7 +37,6 @@ export default {
             //methods
             openModal: () => isOpen.value = true,
             closeModal: () => isOpen.value = false
-
         }
     }
 }
